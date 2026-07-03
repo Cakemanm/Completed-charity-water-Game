@@ -1,4 +1,4 @@
-
+//bug fix comment
 // Difficulty modes 
 const DIFFICULTIES = {
   easy: {
