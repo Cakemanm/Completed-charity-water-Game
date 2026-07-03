@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water Drop Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -51,11 +54,35 @@
           Tap the <strong class="blue">blue drops</strong> to score points.<br>
           <span class="orange">Orange drops</span> are dirty — tap them and lose a life!
         </div>
+
+        <div class="difficulty-picker" id="difficulty-picker">
+          <span class="difficulty-label">Choose your difficulty</span>
+          <div class="difficulty-options">
+            <button class="diff-btn" data-diff="easy">Easy</button>
+            <button class="diff-btn active" data-diff="normal">Normal</button>
+            <button class="diff-btn" data-diff="hard">Hard</button>
+          </div>
+          <p class="difficulty-desc" id="difficulty-desc">40s · win at 40 pts · gentler drops</p>
+        </div>
+
         <button id="overlay-btn">Start Game</button>
       </div>
 
+      <div id="milestone-toast"></div>
+
     </div>
   </div>
+
+  <footer class="cw-footer">
+    <div class="cw-footer-inner">
+      <p class="cw-footer-tag">Every drop counts. In real life too.</p>
+      <div class="cw-footer-links">
+        <a href="https://www.charitywater.org/" target="_blank" rel="noopener">charitywater.org</a>
+        <span class="dot">•</span>
+        <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener" class="cw-donate-link">Donate Now</a>
+      </div>
+    </div>
+  </footer>
 
   <canvas id="confetti-canvas"></canvas>
     

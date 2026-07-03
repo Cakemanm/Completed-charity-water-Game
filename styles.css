@@ -13,8 +13,9 @@ Secondary Colors:
 - Pink:       #F16061
 
 Fonts:
-- Proxima Nova
-- Avenir
+- Proxima Nova / Avenir (brand)
+- Poppins used here as the closest free web-font match: a rounded,
+  geometric sans with the same friendly, modern weight range.
 
 */
 
@@ -38,7 +39,7 @@ Fonts:
 body {
   min-height: 100vh;
   background: linear-gradient(160deg, #0a2342 0%, #1a4a7a 55%, #0f3460 100%);
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -93,6 +94,7 @@ header {
 
 .game-header h1 {
   font-size: clamp(28px, 7vw, 48px);
+  font-weight: 900;
   color: #fff;
   line-height: 1;
 }
@@ -105,6 +107,7 @@ header {
 .game-header p {
   margin-top: 6px;
   font-size: 15px;
+  font-weight: 400;
   color: rgba(255,255,255,.65);
 }
 
@@ -133,6 +136,7 @@ header {
 
 .stat-label {
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: rgba(255,255,255,.5);
@@ -155,6 +159,7 @@ header {
 }
 
 .btn {
+  font-family: inherit;
   padding: 10px 22px;
   border: none;
   border-radius: 50px;
@@ -216,6 +221,7 @@ header {
 
 #overlay-body {
   font-size: 14px;
+  font-weight: 400;
   color: rgba(255,255,255,.75);
   max-width: 340px;
   line-height: 1.5;
@@ -225,6 +231,7 @@ header {
 #overlay-body .orange { color: var(--orange); }
 
 #overlay-btn {
+  font-family: inherit;
   margin-top: 6px;
   padding: 12px 32px;
   background: var(--yellow);
@@ -234,6 +241,56 @@ header {
   font-size: 16px;
   font-weight: 900;
   cursor: pointer;
+}
+
+/* ── Difficulty picker ── */
+.difficulty-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.difficulty-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+
+.difficulty-options {
+  display: flex;
+  gap: 8px;
+}
+
+.diff-btn {
+  font-family: inherit;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+}
+
+.diff-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.diff-btn:hover { border-color: rgba(255,255,255,.5); }
+
+.difficulty-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,.55);
+  min-height: 16px;
 }
 
 /* ── Drops ── */
@@ -258,6 +315,92 @@ header {
   to   { top: 110%; }
 }
 
+/* Pop/splash effect when a drop is tapped and removed from the DOM */
+.drop-pop {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pop .4s ease-out forwards;
+  z-index: 5;
+}
+
+@keyframes pop {
+  0%   { transform: scale(1);   opacity: .9; }
+  100% { transform: scale(1.9); opacity: 0;  }
+}
+
+/* ── Milestone toast ── */
+#milestone-toast {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translate(-50%, -20px);
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 15;
+  transition: opacity .25s, transform .25s;
+  white-space: nowrap;
+}
+
+#milestone-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ── charity: water footer ── */
+.cw-footer {
+  width: 100%;
+  max-width: 860px;
+  padding: 6px 20px 28px;
+}
+
+.cw-footer-inner {
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cw-footer-tag {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,.5);
+}
+
+.cw-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.cw-footer-links a {
+  color: var(--light-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cw-footer-links a:hover { text-decoration: underline; }
+
+.cw-footer-links .dot { color: rgba(255,255,255,.3); }
+
+.cw-donate-link {
+  background: var(--yellow);
+  color: var(--ink) !important;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-weight: 800 !important;
+}
+
 /* ── Confetti canvas ── */
 #confetti-canvas {
   position: fixed;
@@ -271,4 +414,5 @@ header {
   .stat       { padding: 7px 12px; min-width: 60px; }
   .stat-value { font-size: 20px; }
   .btn        { padding: 9px 16px; font-size: 13px; }
+  .cw-footer-inner { flex-direction: column; align-items: flex-start; }
 }
